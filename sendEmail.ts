@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-// Define the days as a const array for type safety
+
 const FRENCH_DAYS = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"] as const;
 type FrenchDay = typeof FRENCH_DAYS[number];
 
@@ -26,7 +26,7 @@ const randomQuotes = [
   "Un jour sans code est un jour perdu. - Un développeur anonyme (probablement en burnout)",
 ];
 
-// Type-safe function to get French day
+
 const getFrenchDay = (): FrenchDay => {
   return FRENCH_DAYS[new Date().getDay()];
 };
