@@ -1,7 +1,7 @@
 name: Daily Motivation Email
 on:
   schedule:
-    - cron: "0 5 * * *"  # 7h Paris (5h UTC en été)
+    - cron: "0 5 * * *"  # 7h Paris
   workflow_dispatch:
 
 jobs:
@@ -17,10 +17,13 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install ts-node typescript --save-dev && npm ci
-
-      - name: Run script
-        run: npx ts-node src/sendEmail.ts
+        run: |
+          npm install -g ts-node typescript
+          npm ci
+          
+      - name: Run script (METHODE ALTERNATIVE)
+        run: |
+          node -e "require('ts-node').register(); require('./src/sendEmail.ts')"
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
